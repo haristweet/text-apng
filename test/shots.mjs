@@ -208,10 +208,10 @@ try {
     ok(d.numPlays === (res.loop === 'infinite' ? 0 : 1), `${label}: 再生の回数 ${d.numPlays === 0 ? 'ずっと' : d.numPlays + ' 回'}`);
     return { d, res };
   };
-  const a = await exportCase('battle', 'cutin', 'battle', { w: 480, h: 270, fps: 12, trim: false, still: true, fmt: 'apng' });
-  ok(a.d.still && Buffer.compare(Buffer.from(a.d.still), Buffer.from(a.res.still, 'base64')) === 0, 'battle: 動かない所の絵が完成形と同じ');
+  const a = await exportCase('live', 'cutin', 'live', { w: 480, h: 270, fps: 12, trim: false, still: true, fmt: 'apng' });
+  ok(a.d.still && Buffer.compare(Buffer.from(a.d.still), Buffer.from(a.res.still, 'base64')) === 0, 'live: 動かない所の絵が完成形と同じ');
   const lastF = a.d.frames[a.d.frames.length - 1].rgba;
-  ok(lastF.every((v, i) => i % 4 !== 3 || v === 0), 'battle: 退場ありの最後のこまは全部透明');
+  ok(lastF.every((v, i) => i % 4 !== 3 || v === 0), 'live: 退場ありの最後のこまは全部透明');
   const b = await exportCase('place-trim', 'telop', 'place', { w: 640, h: 360, fps: 15, trim: true, still: false, fmt: 'apng' });
   ok(b.d.width < 640 && b.d.height < 360 && !b.d.still, `place-trim: 余白を切った（${b.d.width}×${b.d.height}）・動かない所の絵なし`);
   const c = await exportCase('break-loop', 'cutin', 'break', { w: 320, h: 180, fps: 12, trim: false, still: false, fmt: 'apng' });
@@ -225,7 +225,7 @@ try {
   await p2.goto(url);
   await p2.waitForFunction(() => window.__textApng);
   await p2.getByRole('button', { name: 'テロップ', exact: true }).click();
-  await p2.getByRole('button', { name: '時刻', exact: true }).click();
+  await p2.getByRole('button', { name: '日時', exact: true }).click();
   await p2.locator('#c_text').fill('PM 11:45');
   await p2.getByRole('tab', { name: '動き' }).click();
   await p2.locator('#c_idle').selectOption('blink');

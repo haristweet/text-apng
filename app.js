@@ -1,5 +1,5 @@
 // 画面: 場面・テンプレート・設定・プレビューの再生・書き出し
-const VERSION = 'v1.0.0';
+const VERSION = 'v1.1.0';
 const LS_KEY = 'textApngMaker.v1';
 
 const SIZE_PRESETS = [
@@ -26,7 +26,7 @@ const TABS = [
     { k: 'sub', label: '小さな文', type: 'text', show: notStory, hint: () => '空にすると出しません。' },
     { k: 'subPos', label: '小さな文の位置', type: 'select', opts: { below: '大きな文の下', above: '大きな文の上' }, show: (s) => notStory(s) && (s.sub || '').trim() },
     { k: 'cps', label: '1秒に出す字数', type: 'range', min: 2, max: 40, step: 1, fmt: (v) => v + ' 字', show: isStory },
-    { k: 'storyPos', label: '置く所', type: 'select', opts: { center: '真ん中', bottom: '下（メッセージ窓）' }, show: isStory },
+    { k: 'storyPos', label: '置く所', type: 'select', opts: { center: '真ん中', bottom: '下（字幕の窓）' }, show: isStory },
     { k: 'storyAlign', label: '行のそろえ', type: 'select', opts: { left: '左そろえ', center: '中央' }, show: isStory },
   ]],
   ['font', '文字', [
